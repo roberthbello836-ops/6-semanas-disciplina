@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080808"><title>ASCENSION X</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#080808;color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}.wrap{max-width:1050px;margin:auto;padding:14px}.hero,.card{background:#121212;border:1px solid #303030;border-radius:20px;padding:18px;margin:10px 0}.hero{background:linear-gradient(145deg,#191919,#0c0c0c)}.red{color:#f21b2d}.title{font-size:40px;font-weight:950;margin:4px 0}.sub,.muted{color:#aaa}.levels{display:flex;gap:7px;overflow:auto}.lv{min-width:115px;padding:9px;border:1px solid #383838;border-radius:12px;text-align:center;font-weight:900;font-size:11px}.lv.on{border-color:#e50914;background:#29090b}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:#111;border:1px solid #292929;border-radius:15px;padding:13px}.stat b{font-size:25px}.stat small{display:block;color:#999}.buttons{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}button,select{background:#161616;color:#fff;border:1px solid #414141;border-radius:11px;padding:10px 12px;font-weight:800}button.redbtn{background:#e50914;border-color:#e50914}.days{display:flex;gap:7px;overflow:auto}.day{min-width:90px}.day.on{border-color:#e50914;background:#28090b}.bar{height:9px;background:#252525;border-radius:20px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;background:#e50914;width:0}.ex{display:grid;grid-template-columns:28px 1fr auto;gap:9px;padding:11px 0;border-bottom:1px solid #292929;align-items:center}.ex input{width:21px;height:21px;accent-color:#e50914}.ename{font-weight:850}.meta{font-size:12px;color:#999;margin-top:3px}.tag{font-size:10px;color:#ff8b92;background:#280d11;padding:3px 6px;border-radius:6px;margin-right:5px}.week{border:1px solid #303030;border-radius:13px;padding:11px;margin:7px 0}.wtop{display:flex;justify-content:space-between;font-weight:900}.mini{height:7px;background:#252525;border-radius:9px;margin-top:7px}.mini i{display:block;height:100%;background:#e50914}.photos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.photo{height:125px;border:1px dashed #555;border-radius:12px;position:relative;overflow:hidden}.photo input{display:none}.photo label{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;color:#aaa;font-size:12px;font-weight:800}.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.photo button{position:absolute;right:4px;top:4px;z-index:2;padding:3px 7px}.note{font-size:13px;line-height:1.5;color:#c8c8c8}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:8px;border-bottom:1px solid #292929;text-align:left}
+@media(max-width:700px){.title{font-size:33px}.stats{grid-template-columns:repeat(2,1fr)}.photos{grid-template-columns:repeat(2,1fr)}.ex{grid-template-columns:27px 1fr}.ex>div:last-child{grid-column:2;text-align:left}.lv{min-width:108px}}
+</style></head><body><div class="wrap">
+<section class="hero"><div class="red"><b>10 SEMANAS • 5 NIVELES • 70 DÍAS</b></div><div class="title">ASCENSION X</div><div class="sub">Tu campaña para subir de nivel físico.</div><div class="levels" id="levels"></div></section>
+<div class="stats"><div class="stat"><b id="overall">0%</b><small>Proceso total</small></div><div class="stat"><b id="today">0%</b><small>Día seleccionado</small></div><div class="stat"><b id="week">0%</b><small>Semana</small></div><div class="stat"><b id="level">BRONCE</b><small>Nivel</small></div></div>
+<div class="buttons"><button class="redbtn" onclick="today()">Ir a hoy</button><button onclick="go('routine')">🏋️ Rutina</button><button onclick="go('photos')">📸 Fotos</button><button onclick="go('progress')">📊 Progreso</button><button onclick="exportD()">Exportar</button><button onclick="document.getElementById('imp').click()">Importar</button><input id="imp" type="file" accept=".json" hidden onchange="importD(event)"></div>
+<section class="card"><h2>📅 10 semanas</h2><div id="weeks"></div></section>
+<section class="card" id="routine"><h2 id="title">Rutina</h2><div class="muted" id="focus"></div><div class="bar"><i id="pbar"></i></div><div class="days" id="days"></div><div id="list"></div></section>
+<section class="card"><h2>📈 Progresión de cargas</h2><p class="note">Tus PR: banca 70 kg • press militar 60 kg • sentadilla 70 kg. Las cargas iniciales son orientativas: aproximadamente 70–80% del PR. Si completas el rango con técnica limpia y 1–3 repeticiones en reserva, aumenta 2–5 kg en compuestos; en aislamientos usa el mínimo incremento disponible.</p><table><tr><th>Ejercicio</th><th>PR</th><th>Inicio aprox.</th></tr><tr><td>Banca</td><td>70 kg</td><td>50–57.5 kg</td></tr><tr><td>Press militar</td><td>60 kg</td><td>42.5–50 kg</td></tr><tr><td>Sentadilla</td><td>70 kg</td><td>50–57.5 kg</td></tr></table></section>
+<section class="card"><h2>🏃 Running — 2 días</h2><p class="note"><b>Martes:</b> 20–30 min suave, ritmo conversacional. <b>Sábado:</b> 25–35 min progresivo: empieza suave y termina moderado. Cada 2 semanas añade hasta 5 min si recuperas bien.</p></section>
+<section class="card" id="photos"><h2>📸 Transformación — Semana 1 a 10</h2><p class="note">Las fotos se guardan solo en este navegador; no se suben a internet.</p><div class="photos" id="photosGrid"></div></section>
+<section class="card" id="progress"><h2>📊 Evaluación semanal</h2><div id="weekly"></div></section>
+<section class="card"><h2>⚔️ Reglas</h2><p class="note">Técnica antes que peso. No necesitas fallo en cada serie. Si aparece dolor agudo o anormal, detén el ejercicio. El running debe complementar la recuperación. Sueño y alimentación también forman parte del progreso.</p></section>
+</div>
+<script>
+const L=[["BRONCE",1,2],["PLATINO",3,4],["DIAMANTE",5,6],["HEROICO",7,8],["GRAN MAESTRO",9,10]];
+const D=[
+["LUNES","PUSH • Pecho + hombro + tríceps + abdomen",[
+["Pecho","Press banca","4×6–8","50–57.5 kg aprox."],["Pecho","Press inclinado mancuernas","3×8–12","RIR 1–3"],["Pecho","Aperturas polea","3×12–15","Control"],
+["Hombro","Press militar","4×6–8","42.5–50 kg aprox."],["Hombro","Elevaciones laterales","3×12–15","Control"],["Hombro","Pájaros","3×12–15","Control"],
+["Tríceps","Fondos","3×8–12","RIR 1–3"],["Tríceps","Extensión polea","3×10–15","Control"],["Tríceps","Extensión sobre cabeza","3×10–15","Control"],
+["Abdomen","Crunch polea","3×10–15","Control"],["Abdomen","Elevación piernas","3×8–15","Sin balanceo"],["Abdomen","Plancha","3×30–60s","Técnica"]]],
+["MARTES","PULL • Espalda + bíceps + abdomen + running",[
+["Espalda","Dominadas/jalón","4×6–10","RIR 1–3"],["Espalda","Remo barra","3×6–10","Progresivo"],["Espalda","Remo polea","3×8–12","Control"],
+["Bíceps","Curl barra","3×8–12","RIR 1–3"],["Bíceps","Curl inclinado","3×10–12","Control"],["Bíceps","Curl martillo","3×10–15","Control"],
+["Abdomen","Crunch inverso","3×12–15","Control"],["Abdomen","Pallof press","3×10–15/lado","Control"],["Abdomen","Plancha lateral","3×30–45s/lado","Técnica"],
+["Running","Carrera suave","20–30 min","Conversacional"]]],
+["MIÉRCOLES","PIERNAS • Cuádriceps + femoral + glúteo + pantorrilla",[
+["Cuádriceps","Sentadilla","4×6–8","50–57.5 kg aprox."],["Cuádriceps","Prensa","3×8–12","RIR 1–3"],["Cuádriceps","Extensión","3×12–15","Control"],
+["Femoral","Peso muerto rumano","3×6–10","RIR 1–3"],["Femoral","Curl femoral","3×10–15","Control"],["Femoral","Buenos días ligero","3×10–12","Técnica"],
+["Glúteo","Hip thrust","3×8–12","Control"],["Glúteo","Patada polea","3×12–15","Control"],["Glúteo","Abducción","3×12–20","Control"],
+["Pantorrilla","Elevación de pie","4×8–12","Pausa"],["Pantorrilla","Elevación sentado","3×12–20","Pausa"],["Pantorrilla","Tibialis raise","3×15–20","Control"]]],
+["JUEVES","UPPER • Pecho + espalda + hombro + brazos",[
+["Pecho","Press inclinado barra","3×6–10","RIR 1–3"],["Pecho","Press máquina","3×8–12","Control"],["Pecho","Cruce poleas","3×12–15","Control"],
+["Espalda","Jalón neutro","3×8–12","Control"],["Espalda","Remo pecho apoyado","3×8–12","Control"],["Espalda","Pullover polea","3×10–15","Control"],
+["Hombro","Press mancuernas","3×8–12","RIR 1–3"],["Hombro","Lateral polea","3×12–15","Control"],["Hombro","Face pull","3×12–15","Control"],
+["Bíceps","Curl predicador","3×8–12","Control"],["Bíceps","Curl polea","3×10–15","Control"],["Tríceps","Pressdown cuerda","3×10–15","Control"]]],
+["VIERNES","LOWER • Pierna completa + abdomen",[
+["Cuádriceps","Sentadilla hack","3×8–12","RIR 1–3"],["Cuádriceps","Zancadas","3×10–12/lado","Control"],["Cuádriceps","Extensión","3×12–15","Control"],
+["Femoral","RDL mancuernas","3×8–12","Control"],["Femoral","Curl femoral","3×10–15","Control"],["Femoral","Curl unilateral","3×10–15","Control"],
+["Glúteo","Hip thrust","3×8–12","Control"],["Glúteo","Bulgarian split squat","3×8–12/lado","Control"],["Glúteo","Abducción","3×15–20","Control"],
+["Pantorrilla","Elevación pie","3×10–15","Pausa"],["Pantorrilla","Elevación sentado","3×12–20","Pausa"],["Abdomen","Crunch máquina","3×10–15","Control"]]],
+["SÁBADO","ARMS + SHOULDERS • Brazos + hombro + running",[
+["Bíceps","Curl EZ","3×8–12","RIR 1–3"],["Bíceps","Curl martillo","3×10–15","Control"],["Bíceps","Curl bayesiano","3×10–15","Control"],
+["Tríceps","Press cerrado","3×6–10","RIR 1–3"],["Tríceps","Extensión cuerda","3×10–15","Control"],["Tríceps","Extensión unilateral","3×10–15","Control"],
+["Hombro","Press máquina","3×8–12","RIR 1–3"],["Hombro","Elevación lateral","4×12–20","Control"],["Hombro","Pájaros","3×12–20","Control"],
+["Running","Carrera progresiva","25–35 min","Suave → moderado"]]],
+["DOMINGO","RECUPERACIÓN • movilidad + caminata opcional",[
+["Recuperación","Movilidad suave","10–15 min","Sin dolor"],["Recuperación","Caminata opcional","15–30 min","Suave"],["Recuperación","Preparar la semana","10 min","Planificación"]]]
+];
+const K="ascensionX10";let S=JSON.parse(localStorage.getItem(K)||"null")||{start:new Date().toISOString().slice(0,10),sel:0,c:{},p:{}};
+function save(){localStorage.setItem(K,JSON.stringify(S));render()}
+function key(i){let d=new Date(S.start+"T00:00:00");d.setDate(d.getDate()+i);return d.toISOString().slice(0,10)}
+function wk(i){return Math.floor(i/7)+1}function lev(w){return L[Math.min(4,Math.floor((w-1)/2))]}
+function score(i){let a=S.c[key(i)]||[],n=D[i%7][2].length;return Math.round(a.filter(Boolean).length/n*100)}
+function render(){let w=wk(S.sel),l=lev(w);document.getElementById("levels").innerHTML=L.map(x=>`<div class="lv ${x[0]==l[0]?"on":""}">${x[0]}<br><span class="muted">S${x[1]}–${x[2]}</span></div>`).join("");
+let total=0,n=0;for(let i=0;i<70;i++){total+=(S.c[key(i)]||[]).filter(Boolean).length;n+=D[i%7][2].length}document.getElementById("overall").textContent=Math.round(total/n*100)+"%";document.getElementById("today").textContent=score(S.sel)+"%";let a=[];for(let i=(w-1)*7;i<w*7;i++)a.push(score(i));document.getElementById("week").textContent=Math.round(a.reduce((x,y)=>x+y,0)/7)+"%";document.getElementById("level").textContent=l[0];
+document.getElementById("weeks").innerHTML=Array.from({length:10},(_,z)=>{let a=[];for(let i=z*7;i<z*7+7;i++)a.push(score(i));let q=Math.round(a.reduce((x,y)=>x+y,0)/7);return `<div class="week"><div class="wtop"><span>Semana ${z+1} • ${lev(z+1)[0]}</span><span>${q}%</span></div><div class="mini"><i style="width:${q}%"></i></div></div>`}).join("");
+let d=D[S.sel%7],a=S.c[key(S.sel)]||[];document.getElementById("title").textContent=`Día ${S.sel+1} • Semana ${w} — ${d[0]}`;document.getElementById("focus").textContent=d[1];document.getElementById("pbar").style.width=score(S.sel)+"%";
+document.getElementById("days").innerHTML=D.map((x,i)=>`<button class="day ${i==S.sel%7?"on":""}" onclick="selDay(${Math.floor(S.sel/7)*7+i})">${x[0]}</button>`).join("");
+document.getElementById("list").innerHTML=d[2].map((e,j)=>`<label class="ex"><input type="checkbox" ${a[j]?"checked":""} onchange="toggle(${S.sel},${j},this.checked)"><div><div class="ename"><span class="tag">${e[0]}</span>${e[1]}</div><div class="meta">${e[2]} • ${e[3]}</div></div><div class="muted">${e[0]=="Running"?"CARDIO":"GYM"}</div></label>`).join("");
+document.getElementById("photosGrid").innerHTML=Array.from({length:10},(_,i)=>{let s=S.p[i+1]||"";return `<div class="photo">${s?`<img src="${s}"><button onclick="delPhoto(${i+1})">×</button>`:""}<input id="ph${i+1}" type="file" accept="image/*" onchange="photo(${i+1},event)"><label for="ph${i+1}">${s?"":"📷"}<br>Semana ${i+1}</label></div>`}).join("");
+document.getElementById("weekly").innerHTML=Array.from({length:10},(_,z)=>{let a=[];for(let i=z*7;i<z*7+7;i++)a.push(score(i));let q=Math.round(a.reduce((x,y)=>x+y,0)/7);return `<div class="week"><div class="wtop"><span>Semana ${z+1} — ${lev(z+1)[0]}</span><span>${q}%</span></div><div class="mini"><i style="width:${q}%"></i></div><div class="meta">${a.filter(x=>x==100).length}/7 días al 100%</div></div>`}).join("")}
+function selDay(i){S.sel=i;save()}function toggle(i,j,v){let k=key(i);S.c[k]=S.c[k]||[];S.c[k][j]=v;save()}function today(){let d=Math.floor((new Date()-new Date(S.start+"T00:00:00"))/86400000);S.sel=Math.max(0,Math.min(69,d));save();go("routine")}function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+function photo(w,e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{S.p[w]=r.result;save()};r.readAsDataURL(f)}function delPhoto(w){delete S.p[w];save()}
+function exportD(){let b=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ascension-x-backup.json";a.click()}function importD(e){let r=new FileReader();r.onload=()=>{try{S=JSON.parse(r.result);save()}catch{alert("Archivo no válido")}};r.readAsText(e.target.files[0])}render();
+</script></body></html>
